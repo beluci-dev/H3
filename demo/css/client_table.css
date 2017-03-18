@@ -1,0 +1,45 @@
+.input-xs{
+	height: 28px;
+	font-size: 11px;
+	padding: 1px 6px;
+}
+
+.main{
+	width: 320px;
+	margin-left:calc(50% - 160px);
+	padding:10px;
+	margin-top:40px;
+	background-color: rgb(244,244,244);
+	height: 300px;
+	border: 1px solid rgb(230,230,230)
+}
+.main h3{
+	text-align: center;
+	margin: 10px 0px 18px 0px;
+}
+.main .form-control{
+	width:calc(100% - 100px);
+	float: left;
+}
+.main .btn{
+	width: 100px;
+	float: left;
+}
+
+.main .list-group{
+	margin-top: 54px;
+}
+.main .list-group{
+	max-height: 190px;
+	overflow-y: auto;
+}
+.main .list-group a{
+	cursor: pointer;
+	height: 28px;
+	padding: 4px 6px;
+}
+.main .list-group a.active{
+	cursor: default;
+	height: 32px;
+	padding: 8px;
+}
