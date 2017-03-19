@@ -17,6 +17,7 @@ HelloWorld.render(document.body); // Rendering the block
 ### Live Demos
 
 Hello World: https://heronbeluci.github.io/H3/demo/hello_world.html
+
 Client Table: https://heronbeluci.github.io/H3/demo/client_table.html
 
 ### Documentation
