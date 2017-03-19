@@ -88,6 +88,7 @@ H3 = (function(){
 		return this;
 	}
 	handlers.Block.prototype.render = function(dest){
+		if(this.dom === undefined) console.error('H3: Tried to renderize a unbuilded block.');
 		dest.appendChild(this.dom);
 		return this;
 	}
