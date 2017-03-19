@@ -21,10 +21,9 @@ Client Table: https://heronbeluci.github.io/H3/demo/client_table.html
 ### Documentation
 
 #### Element
-__Elements are placed only under a especific block__
+*Elements are placed only under a especific block*
 ```js
-
-	this.elem('h1', {text:'Hello World!'});
+this.elem(tag, config);
 ```
 
 #### Element Config
