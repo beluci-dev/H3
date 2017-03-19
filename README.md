@@ -30,7 +30,7 @@ this.elem(tag, config);
 #### Element Config
 ```js
 {
-	dest:'',   // Destiny to display a element
+	dest:'',   // Destiny to display a element (if null the element have the block with destiny)
 	id:'',     // ID to set in the DOM
 	css:'',    // ClassName of the element (on native DOM is ´class´)
 	text:'',   // Text to display under a element
