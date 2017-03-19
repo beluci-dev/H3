@@ -27,14 +27,14 @@ this.elem(tag, config);
 ```
 
 #### Element Config
-```json
+```js
 {
-	dest:'', // Destiny to display a element
-	id:'',   // ID to set in the DOM
-	css:'',  // ClassName of the element (on native DOM is ´class´)
-	text:'',
-	html:'',
-	value:'',
-	holder:''
+	dest:'',   // Destiny to display a element
+	id:'',     // ID to set in the DOM
+	css:'',    // ClassName of the element (on native DOM is ´class´)
+	text:'',   // Text to display under a element
+	html:'',   // HTML to display under a element (like text but can render html syntaxes)
+	value:'',  // Value of the element (Usually used in inputs)
+	holder:''  // Placeholder of the element (Usually used in inputs)
 }
 ```
