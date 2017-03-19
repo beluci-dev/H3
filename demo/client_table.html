@@ -6,11 +6,35 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
   <link rel="stylesheet" media="screen" href="css/bootstrap.css"/>
-  <link rel="stylesheet" media="screen" href="css/client_table.css"/>
+  <link rel="stylesheet" media="screen" href="css/style.css"/>
 
 </head>
 <body>
   <script src="../dist/H3.js"></script>
-  <script src="js/client_table.js"></script>
+  <script type="text/javascript">
+  	
+  	var demo = new H3.Block(function(block){
+
+		var main = block.elem('div', {css:'main'});
+
+			block.elem('h3', {dest:main, text:'Client Table'})
+
+			var input = this.elem('input', {dest:main, css:'form-control input-xs', holder:'Name'});
+
+			var btn = block.elem('button', {dest:main, css:'btn btn-xs btn-primary', text:'Send'});
+
+			var table = block.elem('div', {dest:main, css:'list-group'});
+				block.elem('a', {dest:table, css:'list-group-item active', text:'List'});
+
+			btn.onClick(function(){
+				block.elem('a', {dest:table, css:'list-group-item', text: input.value()});
+				input.value('');
+			});
+
+	});
+
+	demo.build().render(document.body);
+
+  </script>
 </body>
 </html>

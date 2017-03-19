@@ -25,8 +25,8 @@ H3 = (function(){
 		if(cfg.value !== undefined){
 			element.value = cfg.value;
 		}
-		if(cfg.placeholder !== undefined){
-			element.placeholder = cfg.placeholder;
+		if(cfg.holder !== undefined){
+			element.placeholder = cfg.holder;
 		}
 
 		// Place element on destiny
@@ -76,7 +76,7 @@ H3 = (function(){
 	}
 	handlers.Block.prototype.build = function(){
 
-		this.dom = document.createElement('div');
+		this.dom = document.createElement('h3-block');
 		this.dom.id = this.id;
 
 		// Adding trunk attributes
@@ -84,7 +84,7 @@ H3 = (function(){
 
 
 
-		this.trunk();
+		this.trunk(this);
 		return this;
 	}
 	handlers.Block.prototype.render = function(dest){
