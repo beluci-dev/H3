@@ -11,7 +11,7 @@ var HelloWorld = new H3.Block(function(){ // Creating a block
 
 });
 
-HelloWorld.build(); // Building the block template
+HelloWorld.build(); // Building the block
 HelloWorld.render(document.body); // Rendering the block
 ```
 ### Live Demos
