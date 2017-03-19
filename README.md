@@ -18,3 +18,6 @@ HelloWorld.render(document.body); // Rendering the block
 
 Client Table: https://heronbeluci.github.io/H3/demo/client_table.html
 
+### Documentation
+
+#### Element Config
