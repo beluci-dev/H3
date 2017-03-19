@@ -4,7 +4,7 @@
 
 ### Hello World
 
-```markdown
+```javascript
 var HelloWorld = new H3.Block(function(){
 
 	this.elem('h1', {text:'Hello World!'});
