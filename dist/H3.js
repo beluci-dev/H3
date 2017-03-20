@@ -29,6 +29,13 @@ H3 = (function(){
 			element.placeholder = cfg.holder;
 		}
 
+		// Data
+		if(cfg.data !== undefined){
+			for(var key in cfg.data){
+				element.dataset[key] = cfg.data[key];
+			}
+		}
+
 		// Place element on destiny
 		if(cfg.dest !== undefined){
 			if(cfg.dest.dom !== undefined) 
@@ -40,9 +47,16 @@ H3 = (function(){
 		}
 
 		var events = {
-			click: function(call){
+			onClick: function(call){
 				elements[_id].clickCall = call;
 				element.addEventListener("click", function(){
+					elements[_id].clickCall();
+				});
+				return this;
+			},
+			onOver: function(call){
+				elements[_id].clickCall = call;
+				element.addEventListener("mouseover", function(){
 					elements[_id].clickCall();
 				});
 				return this;
@@ -54,13 +68,32 @@ H3 = (function(){
 					this.dom.value = val;
 					return this;
 				}
+			},
+			css: function(val){
+				if(val === undefined){
+					return this.dom.className;
+				}else{
+					this.dom.className = val;
+					return this;
+				}
+			},
+			data: function(name, val){
+				if(val === undefined){
+					return this.dom.dataset[name];
+				}else{
+					this.dom.dataset[name] = val;
+					return this;
+				}
 			}
 		}
 
 		this.elements[_id] = {
 			dom: element,
-			onClick: events.click,
-			value: events.value
+			onClick: events.onClick,
+			onOver: events.onOver,
+			value: events.value,
+			data: events.data,
+			css: events.css
 		}
 
 		return this.elements[_id];

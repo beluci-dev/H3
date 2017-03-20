@@ -1,0 +1,51 @@
+<html>
+<head>
+
+  <meta charset="utf-8"/>
+  <title>H3</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+  <link rel="stylesheet" media="screen" href="css/bootstrap.css"/>
+  <link rel="stylesheet" media="screen" href="css/style.css"/>
+
+</head>
+<body>
+  <script src="../dist/H3.js"></script>
+  <script type="text/javascript">
+  	
+  	var eventsList = new H3.Block(function(){
+
+  		var main = this.elem('div', {css:'main events'});
+
+			var btnClick = this.elem('button', {dest:main, text:'Click', css:'btn btn-xs btn-primary', data:{status:'primary'}});
+			btnClick.onClick(function(){
+				if(this.data('status') == 'primary'){
+					this.css('btn btn-xs btn-success');
+					this.data('status', 'success');
+				}else{
+					this.css('btn btn-xs btn-primary');
+					this.data('status', 'primary');
+				}
+			});
+
+			var btnOver = this.elem('button', {dest:main, text:'Over', css:'btn btn-xs btn-primary', data:{status:'primary'}});
+			btnOver.onOver(function(){
+				if(this.data('status') == 'primary'){
+					this.css('btn btn-xs btn-success');
+					this.data('status', 'success');
+				}else{
+					this.css('btn btn-xs btn-primary');
+					this.data('status', 'primary');
+				}
+			});
+
+
+			this.elem('p', {dest:main, css:'soon', text:'more events soon...'});
+
+		});
+
+		eventsList.build().render(document.body);
+  	
+  </script>
+</body>
+</html>
