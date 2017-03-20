@@ -28,8 +28,8 @@ Event List: https://heronbeluci.github.io/H3/demo/event_list.html
 this.elem(tag, config);
 ```
 #### Element Tags
-Is the same than default DOM (div, span, button, h1, h2, h3...)
-Complete default element list: https://developer.mozilla.org/en-US/docs/Web/HTML/Element
+Is the same than default DOM (div, span, button, h1, h2, h3...)<br>
+Complete default element list: https://developer.mozilla.org/en-US/docs/Web/HTML/Element<br>
 You can use custom elements to with a exception `H3-Block`, are used by H3.
 
 #### Element Config
