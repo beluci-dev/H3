@@ -50,4 +50,13 @@ You can use custom elements too, with a exception: `H3-Block` are used by H3.
 }
 ```
 
+#### Element Events
+```js
+element.onClick(function(){}); // Called when the mouse clicked in the element
+element.onOver(function(){});  // Called when the mouse over in the element
+element.value();               // Use element.value('10') to set a value
+element.data('name')           // Use element.data('name', 'value') to set a value
+element.css()                  // Use element.css('class') to rewrite the classname
+element.style('name')          // Use element.style('name', 'value') to customize the style
+```
 
