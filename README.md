@@ -43,7 +43,7 @@ You can use custom elements too, with a exception: `H3-Block` are used by H3.
 	value:'',  // Value of the element (Usually used in inputs)
 	holder:'', // Placeholder of the element (Usually used in inputs)
 	data:{},   // Object to save data in the DOM element
-	style:{}   // Custom style for each object
+	style:{}   // Custom style for each element
 }
 ```
 
