@@ -20,6 +20,9 @@ Hello World: https://heronbeluci.github.io/H3/demo/hello_world.html<br>
 Client Table: https://heronbeluci.github.io/H3/demo/client_table.html<br>
 Event List: https://heronbeluci.github.io/H3/demo/event_list.html
 
+### Benchmark
+JSFiddle: https://jsfiddle.net/sfkk4rrw/
+
 ### Documentation
 
 #### Element
