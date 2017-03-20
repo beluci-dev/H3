@@ -92,6 +92,14 @@ H3 = (function(){
 					this.dom.dataset[name] = val;
 					return this;
 				}
+			},
+			style: function(name, val){
+				if(val === undefined){
+					return this.dom.style[name];
+				}else{
+					this.dom.style[name] = val;
+					return this;
+				}
 			}
 		}
 
@@ -101,7 +109,8 @@ H3 = (function(){
 			onOver: events.onOver,
 			value: events.value,
 			data: events.data,
-			css: events.css
+			css: events.css,
+			style: events.style
 		}
 
 		return this.elements[_id];
@@ -132,6 +141,10 @@ H3 = (function(){
 		if(this.dom === undefined) console.error('H3: Tried to renderize a unbuilded block.');
 		dest.appendChild(this.dom);
 		return this;
+	}
+	handlers.Block.prototype.html = function(){
+		if(this.dom === undefined) console.error('H3: Tried to get html from a unbuilded block.');
+		return this.dom;
 	}
 
 	return handlers;
