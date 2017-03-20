@@ -1,4 +1,4 @@
-## H3js a simple template engine.
+## H3js a simple client side template engine.
 
 
 
@@ -20,6 +20,9 @@ Hello World: https://heronbeluci.github.io/H3/demo/hello_world.html<br>
 Client Table: https://heronbeluci.github.io/H3/demo/client_table.html<br>
 Event List: https://heronbeluci.github.io/H3/demo/event_list.html
 
+### Benchmark
+JSFiddle: https://jsfiddle.net/sfkk4rrw/
+
 ### Documentation
 
 #### Element
@@ -27,6 +30,10 @@ Event List: https://heronbeluci.github.io/H3/demo/event_list.html
 ```js
 this.elem(tag, config);
 ```
+#### Element Tags
+Is the same than default DOM (div, span, button, h1, h2, h3...)<br>
+Complete default element list: https://developer.mozilla.org/en-US/docs/Web/HTML/Element<br>
+You can use custom elements too, with a exception: `H3-Block` are used by H3.
 
 #### Element Config
 ```js
@@ -37,6 +44,19 @@ this.elem(tag, config);
 	text:'',   // Text to display under a element
 	html:'',   // HTML to display under a element (like text but can render html syntaxes)
 	value:'',  // Value of the element (Usually used in inputs)
-	holder:''  // Placeholder of the element (Usually used in inputs)
+	holder:'', // Placeholder of the element (Usually used in inputs)
+	data:{},   // Object to save data in the DOM element
+	style:{}   // Custom style for each element
 }
 ```
+
+#### Element Events
+```js
+element.onClick(function(){}); // Called when the mouse clicked in the element
+element.onOver(function(){});  // Called when the mouse over in the element
+element.value();               // Use element.value('10') to set a value
+element.data('name')           // Use element.data('name', 'value') to set a value
+element.css()                  // Use element.css('class') to rewrite the classname
+element.style('name')          // Use element.style('name', 'value') to customize the style
+```
+
