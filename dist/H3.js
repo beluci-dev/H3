@@ -14,6 +14,11 @@ H3 = (function(){
 		if(cfg.css !== undefined){
 			element.className = cfg.css;
 		}
+		if(cfg.style !== undefined){
+			for(var key in cfg.style){
+				element.style[key] = cfg.style[key];
+			}
+		}
 
 		// Content
 		if(cfg.text !== undefined){
@@ -27,6 +32,9 @@ H3 = (function(){
 		}
 		if(cfg.holder !== undefined){
 			element.placeholder = cfg.holder;
+		}
+		if(cfg.title !== undefined){
+			element.title = cfg.title;
 		}
 
 		// Data
