@@ -2,9 +2,11 @@
 _V0.17a (2017-03-21)_
 
 ### Planned Features
-* Advanced Cache System<br>
-
-_More soon..._
+* [Done] Easy element implementation
+* [Done] Dynamic block build
+* [Done] Dynamic block render
+* [Soon] Advanced Cache System (Block by Block)
+* [Soon] Dynamic memory alocation (Configurable)
 
 ### Hello World
 
