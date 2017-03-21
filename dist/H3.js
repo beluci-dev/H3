@@ -76,6 +76,13 @@ H3 = (function(){
 				});
 				return this;
 			},
+			onOut: function(call){
+				elements[_id].clickCall = call;
+				element.addEventListener("mouseout", function(){
+					elements[_id].clickCall();
+				});
+				return this;
+			},
 			value: function(val){
 				if(val === undefined){
 					return this.dom.value;
@@ -111,18 +118,18 @@ H3 = (function(){
 		}
 
 		this.elements[_id] = {
-			dom: element,
-			onClick: events.onClick,
-			onChange: events.onChange,
-			onOver: events.onOver,
-			value: events.value,
-			data: events.data,
-			css: events.css,
-			style: events.style
+			dom:       element,
+			onClick:   events.onClick,
+			onChange:  events.onChange,
+			onOver:    events.onOver,
+			onOut:     events.onOut,
+			value:     events.value,
+			data:      events.data,
+			css:       events.css,
+			style:     events.style
 		}
 
 		return this.elements[_id];
-		//console.log(tag, config);
 	}
 
 	handlers.Block = function(trunk){
