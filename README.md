@@ -1,5 +1,5 @@
 ## H3js a simple client side template engine.
-_V0.16a (2017-03-21)_
+_V0.17a (2017-03-21)_
 
 
 ### Hello World
@@ -53,7 +53,8 @@ You can use custom elements too, with a exception: `H3-Block` are used by H3.
 #### Element Events
 ```js
 element.onClick(function(){});  // Called when the mouse clicked in the element
-element.onOver(function(){});   // Called when the mouse over in the element
+element.onOver(function(){});   // Called when the mouse over the element
+element.onOut(function(){});    // Called when the mouse out the element
 element.onChange(function(){}); // Called when the value change
 element.value();                // Used to get value or element.value('10') to set value
 element.data('name')            // Used to get data or element.data('name', 'value') to set data
