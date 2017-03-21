@@ -1,5 +1,5 @@
 ## H3js a simple client side template engine.
-_V0.15a (2017-03-21)_
+_V0.16a (2017-03-21)_
 
 
 ### Hello World
@@ -21,7 +21,7 @@ Client Table: https://heronbeluci.github.io/H3/demo/client_table.html<br>
 Event List: https://heronbeluci.github.io/H3/demo/event_list.html
 
 ### Benchmark
-JSFiddle: https://jsfiddle.net/sfkk4rrw/
+JSFiddle: https://jsfiddle.net/sfkk4rrw/1/
 
 ### Documentation
 
@@ -52,11 +52,12 @@ You can use custom elements too, with a exception: `H3-Block` are used by H3.
 
 #### Element Events
 ```js
-element.onClick(function(){}); // Called when the mouse clicked in the element
-element.onOver(function(){});  // Called when the mouse over in the element
-element.value();               // Use element.value('10') to set a value
-element.data('name')           // Use element.data('name', 'value') to set a value
-element.css()                  // Use element.css('class') to rewrite the classname
-element.style('name')          // Use element.style('name', 'value') to customize the style
+element.onClick(function(){});  // Called when the mouse clicked in the element
+element.onOver(function(){});   // Called when the mouse over in the element
+element.onChange(function(){}); // Called when the value change
+element.value();                // Used to get value or element.value('10') to set value
+element.data('name')            // Used to get data or element.data('name', 'value') to set data
+element.css()                   // Used to get class or element.css('class') to rewrite the class
+element.style('name')           // Used to get style or element.style('name', 'value') to change the style
 ```
 
