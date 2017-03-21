@@ -8,7 +8,7 @@ _V0.17a (2017-03-21)_
 | Done    | Easy element implementation              |
 | Done    | Dynamic block build                      |
 | Done    | Dynamic block render                     |
-| Soon    | Advanced Cache System (Block by Block)   |
+| Soon    | Advanced Cache System (Block by Block, Dynamic and Static)   |
 | Soon    | Dynamic memory alocation (Configurable)  |
 
 ### Hello World
