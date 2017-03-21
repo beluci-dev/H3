@@ -1,3 +1,18 @@
+/*
+ *       __   __  _______
+ *      |  | |  ||       |
+ *      |  |_|  ||___    |
+ *      |       | ___|   |    __   _____
+ *      |   _   ||___    |   |  | |  ___|
+ *      |  | |  | ___|   | __|  | |___  |
+ *      |__| |__||_______||_____| |_____|
+ *
+ *	    https://github.com/Heronbeluci/H3
+ * 
+ *      V0.17a (2017-03-21) 
+ *
+ */
+
 H3 = (function(){
 	var handlers={};
 	var blocks={};
@@ -146,8 +161,6 @@ H3 = (function(){
 
 		// Adding trunk attributes
 		this.elem = domElement;
-
-
 
 		this.trunk(this);
 		return this;
