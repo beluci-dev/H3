@@ -55,9 +55,9 @@ You can use custom elements too, with a exception: `H3-Block` are used by H3.
 element.onClick(function(){});  // Called when the mouse clicked in the element
 element.onOver(function(){});   // Called when the mouse over in the element
 element.onChange(function(){}); // Called when the value change
-element.value();                // Use element.value('10') to set a value
-element.data('name')            // Use element.data('name', 'value') to set a value
-element.css()                   // Use element.css('class') to rewrite the classname
-element.style('name')           // Use element.style('name', 'value') to customize the style
+element.value();                // Used to get value or element.value('10') to set value
+element.data('name')            // Used to get data or element.data('name', 'value') to set data
+element.css()                   // Used to get class or element.css('class') to rewrite the class
+element.style('name')           // Used to get style or element.style('name', 'value') to change the style
 ```
 
