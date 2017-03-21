@@ -1,6 +1,10 @@
 ## H3js a simple client side template engine.
 _V0.17a (2017-03-21)_
 
+### Planned Features
+* Advanced Cache System<br>
+
+_More soon..._
 
 ### Hello World
 
