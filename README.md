@@ -1,6 +1,15 @@
 ## H3js a simple client side template engine.
 _V0.17a (2017-03-21)_
 
+### Planned Features
+
+| Status  | Description |
+| ------- | ----------- |
+| Done    | Easy element implementation              |
+| Done    | Dynamic block build                      |
+| Done    | Dynamic block render                     |
+| Soon    | Advanced Cache System (Block by Block, Dynamic and Static)   |
+| Soon    | Dynamic memory alocation (Configurable)  |
 
 ### Hello World
 
