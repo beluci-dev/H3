@@ -55,6 +55,13 @@ H3 = (function(){
 		}
 
 		var events = {
+			onChange: function(call){
+				elements[_id].clickCall = call;
+				element.addEventListener("change", function(){
+					elements[_id].clickCall();
+				});
+				return this;
+			},
 			onClick: function(call){
 				elements[_id].clickCall = call;
 				element.addEventListener("click", function(){
@@ -106,6 +113,7 @@ H3 = (function(){
 		this.elements[_id] = {
 			dom: element,
 			onClick: events.onClick,
+			onChange: events.onChange,
 			onOver: events.onOver,
 			value: events.value,
 			data: events.data,
