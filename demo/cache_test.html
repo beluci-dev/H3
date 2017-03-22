@@ -16,7 +16,7 @@
     // Static block with static cache
 
     var blockStatic = new H3.Block(function(){
-      var staticTest = this.elem('button', {html:'Static Sample: <b>'+0.4481043753952276+'</b>'});
+      var staticTest = this.elem('button', {css:'btn btn-primary', html:'Static Sample: <b>'+0.4481043753952276+'</b>'});
 
       staticTest.onClick(function(){ // This dont work more after first run
         alert("This does not work more after first run");
@@ -28,11 +28,58 @@
     blockStatic.render(document.body);
 
 
-
     // Dynamic block with dynamic cache
 
     var blockDynamic = new H3.Block(function(){
-      this.elem('div', {html:'Dynamic Sample: <b>'+Math.random()+'</b>', dyn:true});
+
+      var staticStart = window.performance.now();
+      var staBody = this.elem('div', {css:'well well-sm'});
+        this.elem('h3', {dest:staBody, text:'Static Button'});
+
+        for(i = 0; i < 96; i++){
+          this.elem('button', {
+            dest:staBody,
+            text:'BIGDATA BUTTON', 
+            css:'btn btn-primary btn-sm', 
+            data:{
+              name:'Name Sample',
+              age:18,
+              time:184756574587545,
+              clean:true,
+              birthdate:'2017-03-22',
+              dad:'Ismael',
+              mom:'Gilsinara',
+              car:'none' 
+            }
+          });
+        }
+
+      var staticEnd = window.performance.now();
+      console.log('Static Time: '+(staticEnd - staticStart)+'ms');
+      var dynStart = window.performance.now();
+      var dynBody = this.elem('div', {css:'well well-sm', dyn:true});
+        this.elem('h3', {dest:dynBody, text:'Dynamic Button', dyn:true});
+
+        for(i = 0; i < 96; i++){
+          this.elem('button', {
+            dest:dynBody,
+            text:'BIGDATA BUTTON', 
+            css:'btn btn-primary btn-sm',
+            data:{
+              name:'Name Sample',
+              age:18,
+              time:184756574587545,
+              clean:true,
+              birthdate:'2017-03-22',
+              dad:'Ismael',
+              mom:'Gilsinara',
+              car:'none' 
+            },
+            dyn: true // Enable dynamic cache and set the dynamic ID (number)
+          });
+        }
+      var dynEnd = window.performance.now();
+      console.log('Dynamic Time: '+(dynEnd - dynStart)+'ms');
     });
     blockDynamic.cache();
     blockDynamic.build();

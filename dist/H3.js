@@ -8,121 +8,104 @@
  *
  *      https://github.com/Heronbeluci/H3
  * 
- *      V0.17a (2017-03-21) 
+ *      V0.2 (2017-03-22)
  *
  */
 
 H3 = (function(){
-	var handlers={};
-	var blocks={};
+	let handlers = {};
+	let blocks   = {};
 
-	var domElement = function(tag, cfg){
-		var element = document.createElement(tag);
-		var _id = '_'+Math.random().toString(36).substr(2, 12);
-		var elements = this.elements;
+	let H3Element = function(tag, cfg){
+		let dom = document.createElement(tag);
 
 		// Properties
-		if(cfg.id !== undefined){
-			element.id = cfg.id;
+		if(cfg.id){
+			dom.id = cfg.id;
 		}
-		if(cfg.css !== undefined){
-			element.className = cfg.css;
+		if(cfg.css){
+			dom.className = cfg.css;
 		}
-		if(cfg.style !== undefined){
+		if(cfg.style){
 			for(var key in cfg.style){
-				element.style[key] = cfg.style[key];
+				dom.style[key] = cfg.style[key];
 			}
 		}
 
 		// Content
-		if(cfg.text !== undefined){
-			element.innerText = cfg.text;
+		if(cfg.text){
+			dom.innerText = cfg.text;
 		}
-		if(cfg.html !== undefined){
-			element.innerHTML = cfg.html;
+		if(cfg.html){
+			dom.innerHTML = cfg.html;
 		}
-		if(cfg.value !== undefined){
-			element.value = cfg.value;
+		if(cfg.value){
+			dom.value = cfg.value;
 		}
-		if(cfg.holder !== undefined){
-			element.placeholder = cfg.holder;
+		if(cfg.holder){
+			dom.placeholder = cfg.holder;
 		}
-		if(cfg.title !== undefined){
-			element.title = cfg.title;
+		if(cfg.title){
+			dom.title = cfg.title;
 		}
 
 		// Data
-		if(cfg.data !== undefined){
-			for(var key in cfg.data){
-				element.dataset[key] = cfg.data[key];
-			}
+		if(cfg.data){
+			dom.dataset = cfg.data;
 		}
 
-		// Place element on destiny
-		if(cfg.dest !== undefined){
-			if(cfg.dest.dom !== undefined) 
-				cfg.dest.dom.appendChild(element);
-			else
-				cfg.dest.appendChild(element);
-		}else{
-			this.dom.appendChild(element);
-		}
+		let id = this.elements.length+1;
 
-		var events = {
-			onChange: function(call){
-				elements[_id].clickCall = call;
-				element.addEventListener("change", function(){
-					elements[_id].clickCall();
+		this.elements[id] = {
+			dom: dom,
+
+			onClick:  function(call){
+				elements[id].clickCall = call;
+				element.addEventListener('click', function(){
+					elements[id].clickCall();
 				});
 				return this;
 			},
-			onClick: function(call){
-				elements[_id].clickCall = call;
-				element.addEventListener("click", function(){
-					elements[_id].clickCall();
+			onOver:   function(call){
+				elements[id].overCall = call;
+				element.addEventListener('mouseover', function(){
+					elements[id].overCall();
 				});
 				return this;
 			},
-			onOver: function(call){
-				elements[_id].clickCall = call;
-				element.addEventListener("mouseover", function(){
-					elements[_id].clickCall();
+			onOut:    function(call){
+				elements[id].outCall = call;
+				element.addEventListener('mouseout', function(){
+					elements[id].outCall();
 				});
 				return this;
 			},
-			onOut: function(call){
-				elements[_id].clickCall = call;
-				element.addEventListener("mouseout", function(){
-					elements[_id].clickCall();
-				});
-				return this;
-			},
-			value: function(val){
-				if(val === undefined){
+			value:    function(val){
+				if(val){
 					return this.dom.value;
 				}else{
 					this.dom.value = val;
 					return this;
 				}
 			},
-			css: function(val){
-				if(val === undefined){
+			css:      function(val){
+				if(val){
 					return this.dom.className;
 				}else{
 					this.dom.className = val;
 					return this;
 				}
 			},
-			data: function(name, val){
-				if(val === undefined){
+			data:     function(name, val){
+				if(val){
 					return this.dom.dataset[name];
 				}else{
 					this.dom.dataset[name] = val;
 					return this;
 				}
 			},
-			style: function(name, val){
-				if(val === undefined){
+			style:    function(name, val){
+				if(val){
 					return this.dom.style[name];
 				}else{
 					this.dom.style[name] = val;
@@ -131,36 +114,28 @@ H3 = (function(){
 			}
 		}
 
-		this.elements[_id] = {
-			dom:       element,
-			onClick:   events.onClick,
-			onChange:  events.onChange,
-			onOver:    events.onOver,
-			onOut:     events.onOut,
-			value:     events.value,
-			data:      events.data,
-			css:       events.css,
-			style:     events.style
+		// Place element on destiny
+		if(cfg.dest){
+			cfg.dest.dom.appendChild(dom);
+		}else{
+			this.dom.appendChild(dom);
 		}
 
-		return this.elements[_id];
+		return this.elements[id];
+
 	}
 
 	handlers.Block = function(trunk){
-		this.id = '_'+Math.random().toString(36).substr(2, 12);
+		this.id = new Date().getTime()+Math.random();
 		this.trunk = trunk;
-		this.elements={};
+		this.elements=[];
 		blocks[this.id] = this;
 		return this;
 	}
 	handlers.Block.prototype.build = function(){
-
-		this.dom = document.createElement('h3-block');
+		this.dom    = document.createElement('h3-block');
 		this.dom.id = this.id;
-
-		// Adding trunk attributes
-		this.elem = domElement;
-
+		this.elem   = H3Element;
 		this.trunk(this);
 		return this;
 	}
