@@ -1,5 +1,6 @@
 ## H3js a simple client side template engine.
 _V0.21 (2017-03-21)_
+Next awesome feature: __Data and DOM autoupdate, like VirtualDOM__
 <!--
 ### Planned Features
 
