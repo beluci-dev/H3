@@ -8,7 +8,7 @@
  *
  *      https://github.com/Heronbeluci/H3
  * 
- *      V0.2 (2017-03-22)
+ *      V0.21 (2017-03-22)
  *
  */
 
@@ -55,61 +55,61 @@ H3 = (function(){
 		}
 
 		let id = this.elements.length+1;
-
-		this.elements[id] = {
+		let elements = this.elements;
+		elements[id] = {
 			dom: dom,
 
 			onClick:  function(call){
-				elements[id].clickCall = call;
-				element.addEventListener('click', function(){
+				this.clickCall = call;
+				this.dom.addEventListener('click', function(){
 					elements[id].clickCall();
 				});
 				return this;
 			},
 			onOver:   function(call){
-				elements[id].overCall = call;
-				element.addEventListener('mouseover', function(){
+				this.overCall = call;
+				this.dom.addEventListener('mouseover', function(){
 					elements[id].overCall();
 				});
 				return this;
 			},
 			onOut:    function(call){
-				elements[id].outCall = call;
-				element.addEventListener('mouseout', function(){
+				this.outCall = call;
+				this.dom.addEventListener('mouseout', function(){
 					elements[id].outCall();
 				});
 				return this;
 			},
 			value:    function(val){
 				if(val){
-					return this.dom.value;
-				}else{
 					this.dom.value = val;
 					return this;
+				}else{
+					return this.dom.value;
 				}
 			},
 			css:      function(val){
 				if(val){
-					return this.dom.className;
-				}else{
 					this.dom.className = val;
 					return this;
+				}else{
+					return this.dom.className;
 				}
 			},
 			data:     function(name, val){
 				if(val){
-					return this.dom.dataset[name];
-				}else{
 					this.dom.dataset[name] = val;
 					return this;
+				}else{
+					return this.dom.dataset[name];
 				}
 			},
 			style:    function(name, val){
 				if(val){
-					return this.dom.style[name];
-				}else{
 					this.dom.style[name] = val;
 					return this;
+				}else{
+					return this.dom.style[name];
 				}
 			}
 		}
@@ -121,7 +121,7 @@ H3 = (function(){
 			this.dom.appendChild(dom);
 		}
 
-		return this.elements[id];
+		return elements[id];
 
 	}
 
