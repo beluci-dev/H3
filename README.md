@@ -14,9 +14,9 @@ _V0.21 (2017-03-21)_
 ### Hello World
 
 ```js
-var HelloWorld = new H3.Block(function(){ // Creating a block
+var HelloWorld = new H3.Block(function(){ // Creating the block
 
-	this.elem('h1', {text:'Hello World!'});
+	this.elem('h1', {text:'Hello World!'}); // Defining the element
 
 });
 
