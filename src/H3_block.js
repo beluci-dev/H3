@@ -7,6 +7,10 @@
 		this.elements=[];
 		return this;
 	}
+	H3.Block.prototype.data = function(object){
+		this.dataObject = object;
+		return this;
+	}
 	H3.Block.prototype.build = function(){
 		this.dom    = document.createElement('h3-block');
 		this.dom.id = this.id;
