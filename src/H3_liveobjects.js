@@ -1,17 +1,26 @@
+function onPropertyChange(o, callback){
+    for(var p in o){
+        if(o.hasOwnProperty(p)){
+            var originalVal = o[p];
+            Object.defineProperty(o, p, {
+               get: function(){
+                   return originalVal;
+               },
+               set: function(val){
+                   callback.call(o, p, val);
+                   return originalVal = val;
+               }
+            });
+        }
+    }
+}
+
 (function(){
 	if(typeof H3 == 'undefined') H3 = {};
 
 	H3.lo = {
 		storage:{}
 	};
-
-	var haveDiff = function(dom, str, html){
-		if(html){
-			return dom.innerHTML !== str;
-		}else{
-			return dom.innerText !== str;
-		}
-	}
 
 	var templateParser = function(src, data, dom){
 		for(var key in data){
@@ -28,37 +37,9 @@
 			
 		var data = block.dataObject;
 
-		for(var key in data){
-			if(data.hasOwnProperty(key)){
-				var val = data[key];
-				Object.defineProperty(data, key, {
-				    get:function(){
-				    	return val;
-				    },
-				    set:function(newval){
-				    	val = newval;
-				    	console.log(templateParser(str, data, dom));
-				    	return val;
-				    }
-				});
-			}			
-		}
-		/*
-		
-		for(var key in data){
-			var val = data[key];
-			Object.defineProperty(data, key, {
-				get: function(){
-					return val;
-				},
-				set: function(newval){
-					val = newval
-					console.log(templateParser(str, data, dom));
-					return val;
-				}
-			});
-		}
-		*/
+		onPropertyChange(data, function(dat, key, val){
+			console.log(templateParser(str, data, dom));
+		});
 
 		return templateParser(str, data, dom);
 	}
