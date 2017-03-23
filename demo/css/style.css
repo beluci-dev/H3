@@ -55,3 +55,19 @@
 	color:rgb(160,160,160);
 	font-size: 12px;
 }
+
+.auto-update{
+	width: 400px;
+	height: 120px;
+	margin: calc(18% - 60px) calc(50% - 200px);
+}
+.auto-update h3{
+	margin:10px;
+	text-align: center;
+}
+.auto-update p{
+	font-size: 14px;
+	text-align: center;
+	margin:0px;
+	font-family: verdana;
+}

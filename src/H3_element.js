@@ -1,20 +1,43 @@
-/*
- *       __   __  _______
- *      |  | |  ||___    |
- *      |  |_|  | ___|   |    __   _____
- *      |   _   ||___    |   |  | |  ___|
- *      |  | |  | ___|   | __|  | |___  |
- *      |__| |__||_______||_____| |_____|
- *
- *      https://github.com/Heronbeluci/H3
- * 
- *      V0.18a (2017-03-22)
- *
- */
 (function(){
-	H3 = {};
+	if(typeof H3 == 'undefined') H3 = {};
 
-	var H3Element = function(tag, cfg){
+
+	// !!!UNDER CONSTRUCTION!!! (THIS IS JUST A TEST FOR LIVEOBJECTS)
+	var parseData = function(str, data, dom, html){
+		if(!data) return str;
+
+		var parse = str;
+
+		for(var key in data){
+			if (str.indexOf('{{'+key+'}}') == -1) continue;
+
+			var val = data[key];
+      var reg = new RegExp('{{\\s?'+key+'\\s?}}', 'ig');
+      parse = parse.replace(reg, val);
+
+			Object.defineProperty(data, key, {
+				get: function(){
+					return val;
+				},
+				set: function(newval){
+					var newparse = str.replace(reg, val);
+					if(newparse != parse){
+					 	if(html){
+							dom.innerHTML=newparse;
+						}else{
+							dom.innerText=newparse;
+						}
+					}
+					return val = newval;
+				}
+			});
+    }
+    return parse;
+	}
+	// !!!UNDER CONSTRUCTION!!! (THIS IS JUST A TEST FOR LIVEOBJECTS)
+
+
+	H3.DOMelem = function(tag, cfg){
 		var dom = document.createElement(tag);
 
 		// Properties
@@ -32,10 +55,10 @@
 
 		// Content
 		if(cfg.text){
-			dom.innerText = cfg.text;
+			dom.innerText = parseData(cfg.text, this.dataObject, dom);
 		}
 		if(cfg.html){
-			dom.innerHTML = cfg.html;
+			dom.innerHTML = parseData(cfg.html, this.dataObject, dom, true);
 		}
 		if(cfg.value){
 			dom.value = cfg.value;
@@ -122,27 +145,4 @@
 		return elements[id];
 	}
 
-	H3.Block = function(trunk){
-		this.id = new Date().getTime()+Math.random();
-		this.trunk = trunk;
-		this.elements=[];
-		//blocks[this.id] = this;
-		return this;
-	}
-	H3.Block.prototype.build = function(){
-		this.dom    = document.createElement('h3-block');
-		this.dom.id = this.id;
-		this.elem   = H3Element;
-		this.trunk(this);
-		return this;
-	}
-	H3.Block.prototype.render = function(dest){
-		if(this.dom === undefined) console.error('H3: Tried to renderize a unbuilded block.');
-		dest.appendChild(this.dom);
-		return this;
-	}
-	H3.Block.prototype.html = function(){
-		if(this.dom === undefined) console.error('H3: Tried to get html from a unbuilded block.');
-		return this.dom;
-	}
 })();
