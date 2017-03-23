@@ -19,10 +19,10 @@
 		
 		// Content
 		if(cfg.text){
-			dom.innerText = H3.lo.parseData(cfg.text, this.dataObject, dom);
+			dom.innerText = H3.lo.simpleParse(this, dom, cfg.text);
 		}
 		if(cfg.html){
-			dom.innerHTML = H3.lo.parseData(cfg.html, this.dataObject, dom, true);
+			dom.innerHTML = H3.lo.simpleParse(this, dom, cfg.html, true);
 		}
 		if(cfg.value){
 			dom.value = cfg.value;
@@ -43,25 +43,20 @@
 		var elements = this.elements;
 		elements[id] = {
 			dom: dom,
-
-			onClick:  function(call){
-				this.clickCall = call;
-				this.dom.addEventListener('click', function(){
-					elements[id].clickCall();
-				});
-				return this;
+			calls:{},
+			call: function(name, data){
+				if(data !== undefined){
+					this.calls[name] = data;
+				}else{
+					this.tmpCall = this.calls[name];
+					this.tmpCall();
+					delete this.tmpCall;
+				}
 			},
-			onOver:   function(call){
-				this.overCall = call;
-				this.dom.addEventListener('mouseover', function(){
-					elements[id].overCall();
-				});
-				return this;
-			},
-			onOut:    function(call){
-				this.outCall = call;
-				this.dom.addEventListener('mouseout', function(){
-					elements[id].outCall();
+			event: function(name, call){
+				elements[id].call(name, call);
+				this.dom.addEventListener(name, function(){
+					elements[id].call(name);
 				});
 				return this;
 			},

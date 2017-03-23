@@ -56,18 +56,29 @@
 	font-size: 12px;
 }
 
-.auto-update{
-	width: 400px;
-	height: 120px;
-	margin: calc(18% - 60px) calc(50% - 200px);
+.live-page.clock{
+	position: absolute;
+	width: 130px;
+	height: 40px;
+	text-align: center;
+	top:10px;
+	right: 10px;
+	font-weight: 600;
 }
-.auto-update h3{
+.live-page.title{
 	margin:10px;
 	text-align: center;
 }
-.auto-update p{
+.live-page.header{
+	margin:10px;
+}
+.live-page.form-control{
+	width: 180px;
+	height: 26px;
+}
+.live-page.text{
 	font-size: 14px;
-	text-align: center;
-	margin:0px;
+	margin:12px;
 	font-family: verdana;
+	color:rgb(80,80,80);
 }

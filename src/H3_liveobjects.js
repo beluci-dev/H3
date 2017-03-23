@@ -1,40 +1,61 @@
 (function(){
 	if(typeof H3 == 'undefined') H3 = {};
 
-	H3.lo = {};
+	H3.lo = {
+		storage:{}
+	};
 
-	// !!!UNDER CONSTRUCTION!!! (THIS IS JUST A TEST)
-	H3.lo.parseData = function(str, data, dom, html){
-		if(!data) return str;
+	var haveDiff = function(dom, str, html){
+		if(html){
+			return dom.innerHTML !== str;
+		}else{
+			return dom.innerText !== str;
+		}
+	}
 
-		var parse = str;
-
+	var templateParser = function(template, data, dom){
 		for(var key in data){
-			if (str.indexOf('{{'+key+'}}') == -1) continue;
+			src = src.replace(/{{(.*?)}}/, function(match, key) {
+				return data[key];
+			});
+		}
 
+		return src;
+	}
+
+	H3.lo.simpleParse = function(block, dom, str, html){
+		if(!data) return str;
+		
+		for(var key in data){
+			Object.defineProperty(data, key, {
+			    get:function(){
+			    	return localData[key];
+			    },
+			    set:function(val){
+			    	localData[key] = val;
+			    	console.log(templateParser(str, data, dom));
+			    }
+			});
+		}
+		/*
+		
+		for(var key in data){
 			var val = data[key];
-      var reg = new RegExp('{{\\s?'+key+'\\s?}}', 'ig');
-      parse = parse.replace(reg, val);
-
 			Object.defineProperty(data, key, {
 				get: function(){
 					return val;
 				},
 				set: function(newval){
-					var newparse = str.replace(reg, val);
-					if(newparse != parse){
-					 	if(html){
-							dom.innerHTML=newparse;
-						}else{
-							dom.innerText=newparse;
-						}
-					}
-					return val = newval;
+					val = newval
+					console.log(templateParser(str, data, dom));
+					return val;
 				}
 			});
-    }
-    return parse;
+		}
+		*/
+
+		return templateParser(str, localData, dom);
 	}
-	// !!!UNDER CONSTRUCTION!!! (THIS IS JUST A TEST)
+
 
 })();

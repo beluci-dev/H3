@@ -17,28 +17,42 @@
   <script src="H3_liveobjects.js"></script>
 
   <script type="text/javascript">
+
+    Date.prototype.timeNow = function () {
+     return ((this.getHours() < 10)?"0":"") + this.getHours() +":"+ ((this.getMinutes() < 10)?"0":"") + this.getMinutes() +":"+ ((this.getSeconds() < 10)?"0":"") + this.getSeconds();
+    }
+
+    var data = {
+      time:new Date().timeNow(),
+      word1:'lorem',
+      word2:'dolor'
+    };
+
   	var dev = new H3.Block(function(){
 
-			var container = this.elem('div', {css:'well well-sm auto-update'});
+      this.elem('h1', {text:'Live Objects Sample Page', css:'live-page title'});
+			this.elem('div', {css:'well well-sm live-page clock', text:'Clock: {{time}}'});
 
-        this.elem('h3', {dest:container, text:'Live Objects'});
+      var container = this.elem('div', {css:'well well-sm'});
 
-        this.elem('p', {dest:container, html:'R${{money}}'});
-        this.elem('p', {dest:container, html:'{{age}} years old {{teste.teste}}'});
+        this.elem('input', {dest:container, css:'live-page form-control', holder:'lorem', value:'lorem'}).event('keyup', function(){
+          data.word1 = this.value();
+        });
+        this.elem('input', {dest:container, css:'live-page form-control', holder:'dolor', value:'dolor'}).event('keyup', function(){
+          data.word2 = this.value();
+        });
+
+
+      this.elem('div', {css:'live-page text', text:'{{word1}} ipsum {{word2}} sit amet, consectetur adipiscing elit. '});
 
 
 		});
 
-    var dynamic = {age:0, money:0, teste:{teste:1}};
-
     setInterval(function(){
+      data.time = new Date().timeNow();
+    }, 1000);
 
-      dynamic.age = parseInt(Math.random() * (60 - 10) + 10);
-      dynamic.money = (Math.random() * (20000 - 50) + 50).toFixed(2);
-
-    }, 100);
-
-    dev.data(dynamic);
+    dev.data(data);
 		dev.build();
     dev.render(document.body);
   	
