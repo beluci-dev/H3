@@ -1,17 +1,5 @@
 ## H3js a simple client side template engine.
-_V0.21 (2017-03-21)_<br>
-__Next awesome feature:__ Data and DOM autoupdate, like VirtualDOM
-<!--
-### Planned Features
-
-| Status  | Description |
-| ------- | ----------- |
-| Done    | Easy element implementation              |
-| Done    | Dynamic block build                      |
-| Done    | Dynamic block render                     |
-| Soon    | Advanced Cache System (Block by Block, Dynamic and Static)   |
-| Soon    | Dynamic memory alocation (Configurable)  |
--->
+_V0.21a (2017-03-21)_<br>
 ### Hello World
 
 ```js
