@@ -13,7 +13,7 @@
 		}
 	}
 
-	var templateParser = function(template, data, dom){
+	var templateParser = function(src, data, dom){
 		for(var key in data){
 			src = src.replace(/{{(.*?)}}/, function(match, key) {
 				return data[key];
@@ -24,18 +24,23 @@
 	}
 
 	H3.lo.simpleParse = function(block, dom, str, html){
-		if(!data) return str;
-		
+		if(!block.dataObject) return str;
+			
+		var data = block.dataObject;
+
 		for(var key in data){
-			Object.defineProperty(data, key, {
-			    get:function(){
-			    	return localData[key];
-			    },
-			    set:function(val){
-			    	localData[key] = val;
-			    	console.log(templateParser(str, data, dom));
-			    }
-			});
+			if(data.hasOwnProperty(key)){
+				var val = data[key];
+				Object.defineProperty(data, key, {
+				    get:function(){
+				    	return val;
+				    },
+				    set:function(newval){
+				    	val = newval;
+				    	console.log(templateParser(str, data, dom));
+				    }
+				});
+			}			
 		}
 		/*
 		
@@ -54,7 +59,7 @@
 		}
 		*/
 
-		return templateParser(str, localData, dom);
+		return templateParser(str, data, dom);
 	}
 
 

@@ -8,7 +8,6 @@
 		return this;
 	}
 	H3.Block.prototype.data = function(object){
-		this.dataStorage = (JSON.parse(JSON.stringify(object)));
 		this.dataObject = object;
 		return this;
 	}
