@@ -38,6 +38,7 @@
 				    set:function(newval){
 				    	val = newval;
 				    	console.log(templateParser(str, data, dom));
+				    	return val;
 				    }
 				});
 			}			
