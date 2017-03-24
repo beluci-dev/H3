@@ -22,27 +22,25 @@ function onPropertyChange(o, callback){
 		storage:{}
 	};
 
-	var templateParser = function(src, data, dom){
-		for(var key in data){
-			src = src.replace(/{{(.*?)}}/, function(match, key) {
-				return data[key];
-			});
-		}
+	var templateParser = function(key, val, str){
 
-		return src;
-	}
-
-	H3.lo.simpleParse = function(block, dom, str, html){
-		if(!block.dataObject) return str;
-			
-		var data = block.dataObject;
-
-		onPropertyChange(data, function(dat, key, val){
-			console.log(templateParser(str, data, dom));
+		str = str.replace(/{{(.*?)}}/, function(match, key) {
+			return val;
 		});
 
-		return templateParser(str, data, dom);
+		return str;
 	}
 
+	H3.lo.simpleParse = function(block, str, dom, html){
+		if(!block.dataObject) return str;
+		
+		var data = block.dataObject;
+
+		onPropertyChange(data, function(dat, key){
+			console.log(templateParser(dat, key, str));
+		});
+
+		//return templateParser(str, data, dom);
+	}
 
 })();

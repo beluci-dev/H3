@@ -19,10 +19,10 @@
 		
 		// Content
 		if(cfg.text){
-			dom.innerText = H3.lo.simpleParse(this, dom, cfg.text);
+			dom.innerText = H3.lo.simpleParse(this, cfg.text, dom);
 		}
 		if(cfg.html){
-			dom.innerHTML = H3.lo.simpleParse(this, dom, cfg.html, true);
+			dom.innerHTML = H3.lo.simpleParse(this, cfg.html, dom, true);
 		}
 		if(cfg.value){
 			dom.value = cfg.value;
