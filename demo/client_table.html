@@ -16,19 +16,19 @@
   	
   	var demo = new H3.Block(function(block){
 
-		var main = block.elem('div', {css:'main'});
+		var main = block.elem('div', {class:'main'});
 
 			block.elem('h3', {dest:main, text:'Client Table'})
 
-			var input = this.elem('input', {dest:main, css:'form-control input-xs', holder:'Name'});
+			var input = this.elem('input', {dest:main, class:'form-control input-xs', placeholder:'Name'});
 
-			var btn = block.elem('button', {dest:main, css:'btn btn-xs btn-primary', text:'Send'});
+			var btn = block.elem('button', {dest:main, class:'btn btn-xs btn-primary', text:'Send'});
 
-			var table = block.elem('div', {dest:main, css:'list-group'});
-				block.elem('a', {dest:table, css:'list-group-item active', text:'List'});
+			var table = block.elem('div', {dest:main, class:'list-group'});
+				block.elem('a', {dest:table, class:'list-group-item active', text:'List'});
 
-			btn.onClick(function(){
-				block.elem('a', {dest:table, css:'list-group-item', text: input.value()});
+			btn.event('click', function(){
+				block.elem('a', {dest:table, class:'list-group-item', text: input.value()});
 				input.value('');
 			});
 

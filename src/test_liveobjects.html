@@ -30,20 +30,20 @@
 
   	var dev = new H3.Block(function(){
 
-      this.elem('h1', {text:'Live Objects Sample Page', css:'live-page title'});
-			this.elem('div', {css:'well well-sm live-page clock', text:'Clock: {{time}}'});
+      this.elem('h1', {text:'Live Objects Sample Page', class:'live-page title'});
+			this.elem('div', {class:'well well-sm live-page clock', text:'Clock: {{time}}'});
 
-      var container = this.elem('div', {css:'well well-sm'});
+      var container = this.elem('div', {class:'well well-sm'});
 
-        this.elem('input', {dest:container, css:'live-page form-control', holder:'lorem', value:'lorem'}).event('keyup', function(){
+        this.elem('input', {dest:container, class:'live-page form-control', placeholder:'lorem', value:'lorem'}).event('keyup', function(){
           data.word1 = this.value();
         });
-        this.elem('input', {dest:container, css:'live-page form-control', holder:'dolor', value:'dolor'}).event('keyup', function(){
+        this.elem('input', {dest:container, class:'live-page form-control', placeholder:'dolor', value:'dolor'}).event('keyup', function(){
           data.word2 = this.value();
         });
 
 
-      this.elem('div', {css:'live-page text', text:'{{word1}} ipsum {{word2}} sit amet, consectetur adipiscing elit. '});
+      this.elem('div', {class:'live-page text', text:'{{word1}} ipsum {{word2}} sit amet, consectetur adipiscing elit. '});
 
 
 		});

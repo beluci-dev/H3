@@ -14,38 +14,38 @@
   <script src="../dist/H3.js"></script>
   <script type="text/javascript">
   	
-  	var eventsList = new H3.Block(function(){
+    var eventsList = new H3.Block(function(){
 
-  		var main = this.elem('div', {css:'main events'});
+      var main = this.elem('div', {class:'main events'});
 
-			var btnClick = this.elem('button', {dest:main, text:'Click', css:'btn btn-xs btn-primary', data:{status:'primary'}});
-			btnClick.onClick(function(){
-				if(this.data('status') == 'primary'){
-					this.css('btn btn-xs btn-success');
-					this.data('status', 'success');
-				}else{
-					this.css('btn btn-xs btn-primary');
-					this.data('status', 'primary');
-				}
-			});
+      var btnClick = this.elem('button', {dest:main, text:'Click', class:'btn btn-xs btn-primary', data:{status:'primary'}});
+      btnClick.event('click', function(){
+        if(this.data('status') == 'primary'){
+          this.class('btn btn-xs btn-success');
+          this.data('status', 'success');
+        }else{
+          this.class('btn btn-xs btn-primary');
+          this.data('status', 'primary');
+        }
+      });
 
-			var btnOver = this.elem('button', {dest:main, text:'Over', css:'btn btn-xs btn-primary', data:{status:'primary'}});
-			btnOver.onOver(function(){
-				if(this.data('status') == 'primary'){
-					this.css('btn btn-xs btn-success');
-					this.data('status', 'success');
-				}else{
-					this.css('btn btn-xs btn-primary');
-					this.data('status', 'primary');
-				}
-			});
+      var btnOver = this.elem('button', {dest:main, text:'Over', class:'btn btn-xs btn-primary', data:{status:'primary'}});
+      btnOver.event('mouseover', function(){
+        if(this.data('status') == 'primary'){
+          this.class('btn btn-xs btn-success');
+          this.data('status', 'success');
+        }else{
+          this.class('btn btn-xs btn-primary');
+          this.data('status', 'primary');
+        }
+      });
 
 
-			this.elem('p', {dest:main, css:'soon', text:'more events soon...'});
+      this.elem('p', {dest:main, class:'soon', text:'more events soon...'});
 
-		});
+    });
 
-		eventsList.build().render(document.body);
+    eventsList.build().render(document.body);
   	
   </script>
 </body>

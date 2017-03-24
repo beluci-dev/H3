@@ -8,77 +8,61 @@
  *
  *      https://github.com/Heronbeluci/H3
  * 
- *      V0.18a (2017-03-22)
+ *      V0.2a (2017-03-22)
  *
  */
 (function(){
 	H3 = {};
 
-	var H3Element = function(tag, cfg){
+	H3.DOMelem = function(tag, cfg){
 		var dom = document.createElement(tag);
 
 		// Properties
-		if(cfg.id){
-			dom.id = cfg.id;
-		}
-		if(cfg.css){
-			dom.className = cfg.css;
-		}
-		if(cfg.style){
-			for(var key in cfg.style){
-				dom.style[key] = cfg.style[key];
-			}
-		}
+		if(cfg.id)            dom.id           = cfg.id;
+		if(cfg.class)         dom.className    = cfg.class;
+		if(cfg.src)           dom.src          = cfg.src;
+		if(cfg.type)          dom.type         = cfg.type;
+		if(cfg.href)          dom.href         = cfg.href;
+		if(cfg.value)         dom.value        = cfg.value;
+		if(cfg.placeholder)   dom.placeholder  = cfg.placeholder;
+		if(cfg.title)         dom.title        = cfg.title;
+		if(cfg.data)          dom.dataset      = cfg.data;
 
 		// Content
-		if(cfg.text){
-			dom.innerText = cfg.text;
-		}
-		if(cfg.html){
-			dom.innerHTML = cfg.html;
-		}
-		if(cfg.value){
-			dom.value = cfg.value;
-		}
-		if(cfg.holder){
-			dom.placeholder = cfg.holder;
-		}
-		if(cfg.title){
-			dom.title = cfg.title;
-		}
+		if(cfg.text)          dom.innerText    = cfg.text;
+		if(cfg.html)          dom.innerHTML    = cfg.html;
 
-		// Data
-		if(cfg.data){
-			dom.dataset = cfg.data;
+		// Style
+		if(cfg.style){
+			for(var i in cfg.style){
+				dom.style[i] = cfg.style[i];
+			}
 		}
 
 		var id = this.elements.length+1;
 		var elements = this.elements;
 		elements[id] = {
 			dom: dom,
+			calls:{},
+			call:  function(name, data, result){
+				if(data !== null){
+					this.calls[name] = data;
+				}else{
+					this.tmpCall = this.calls[name];
+					this.tmpCall(result);
+					delete this.tmpCall;
+				}
+			},
+			event: function(name, call){
+				elements[id].call(name, call);
+				this.dom.addEventListener(name, function(e){
+					elements[id].call(name, null, e);
+				});
+				return this;
+			},
 
-			onClick:  function(call){
-				this.clickCall = call;
-				this.dom.addEventListener('click', function(){
-					elements[id].clickCall();
-				});
-				return this;
-			},
-			onOver:   function(call){
-				this.overCall = call;
-				this.dom.addEventListener('mouseover', function(){
-					elements[id].overCall();
-				});
-				return this;
-			},
-			onOut:    function(call){
-				this.outCall = call;
-				this.dom.addEventListener('mouseout', function(){
-					elements[id].outCall();
-				});
-				return this;
-			},
-			value:    function(val){
+			// Actions
+			value: function(val){
 				if(val){
 					this.dom.value = val;
 					return this;
@@ -86,7 +70,7 @@
 					return this.dom.value;
 				}
 			},
-			css:      function(val){
+			class: function(val){
 				if(val){
 					this.dom.className = val;
 					return this;
@@ -94,7 +78,7 @@
 					return this.dom.className;
 				}
 			},
-			data:     function(name, val){
+			data:  function(name, val){
 				if(val){
 					this.dom.dataset[name] = val;
 					return this;
@@ -102,7 +86,7 @@
 					return this.dom.dataset[name];
 				}
 			},
-			style:    function(name, val){
+			style: function(name, val){
 				if(val){
 					this.dom.style[name] = val;
 					return this;
@@ -132,7 +116,7 @@
 	H3.Block.prototype.build = function(){
 		this.dom    = document.createElement('h3-block');
 		this.dom.id = this.id;
-		this.elem   = H3Element;
+		this.elem   = H3.DOMelem;
 		this.trunk(this);
 		return this;
 	}
