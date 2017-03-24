@@ -5,6 +5,17 @@
 		this.id = new Date().getTime()+Math.random();
 		this.trunk = trunk;
 		this.elements=[];
+
+		this.destroy = function(){
+			if(this.dom !== undefined) this.dom.remove();
+			delete this.dom;
+			delete this.elem;
+			delete this.elements;
+			delete this.id;
+			delete this.trunk;
+			delete this.destroy;
+		}
+
 		return this;
 	}
 	H3.Block.prototype.data = function(object){
