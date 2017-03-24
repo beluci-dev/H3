@@ -1,5 +1,5 @@
 ## H3js a simple client side template engine.
-_V0.2a (2017-03-21)_<br>
+_V0.2a (2017-03-24)_<br>
 ### Hello World
 
 ```js
