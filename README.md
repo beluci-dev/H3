@@ -54,7 +54,7 @@ H3 Custom Attributes
 ```js
 element.event('eventName', callbackFunction);
 ```
-Dom events list: https://www.w3schools.com/tags/ref_eventattributes.asp
+DOM events list: https://www.w3schools.com/tags/ref_eventattributes.asp
 
 ##### Element Handlers
 ```js
