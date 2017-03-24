@@ -1,4 +1,4 @@
-## H3js a simple client side template engine.
+# H3js a simple client side template engine.
 _V0.2a (2017-03-24)_<br>
 ### Hello World
 
@@ -21,9 +21,9 @@ Event List: https://heronbeluci.github.io/H3/demo/event_list.html
 ### Benchmark
 JSFiddle: https://jsfiddle.net/sfkk4rrw/1/
 
-### Documentation
+## Documentation
 
-#### Element
+### Element
 *Elements are placed only under a especific block*
 ```js
 this.elem(tag, attributes);
