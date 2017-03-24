@@ -35,7 +35,7 @@ You can use custom elements too, with a exception: `H3-Block` are used by H3.
 
 ##### Element Attributes
 
-HTML Default attributes: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes#Attribute_list
+HTML Default attributes: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes#Attribute_list<br>
 Obs. Not all attributes are present, but we are working on this.
 
 H3 Custom Attributes
@@ -54,6 +54,7 @@ H3 Custom Attributes
 ```js
 element.event('eventName', callbackFunction);
 ```
+Dom events list: https://www.w3schools.com/tags/ref_eventattributes.asp
 
 ##### Element Handlers
 ```js
