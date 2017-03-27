@@ -18,8 +18,31 @@
 
 		return this;
 	}
+	H3.Block.prototype.update = function(object){
+		
+		for(var key in this.elements){
+			var elem = this.elements[key];
+			var dom  = elem.dom;
+
+			if(dom.useData){
+				var newParser = H3.lo.templateParser(this.dataObject, elem.template, elem);
+				if(dom.isHtml){
+					if(dom.innerText != newParser){
+						dom.innerText = newParser;
+					}
+				}else{
+					if(dom.innerHTML != newParser){
+						dom.innerHTML = newParser;
+					}
+				}				
+			}
+		}
+
+		return this;
+	}
 	H3.Block.prototype.data = function(object){
 		this.dataObject = object;
+
 		return this;
 	}
 	H3.Block.prototype.build = function(){

@@ -16,8 +16,16 @@
 		if(cfg.data)          dom.dataset      = cfg.data;
 
 		// Content
-		if(cfg.text)          dom.innerText    = H3.lo.simpleParse(this, cfg.text, dom);
-		if(cfg.html)          dom.innerHTML    = H3.lo.simpleParse(this, cfg.html, dom, true);
+		if(cfg.text){
+			dom.innerText = H3.lo.templateParser(this.dataObject, cfg.text, dom);
+			dom.isHtml=false;
+			var str = cfg.text;
+		}
+		if(cfg.html){
+			dom.innerHTML = H3.lo.templateParser(this.dataObject, cfg.html, dom);
+			dom.isHtml=true;
+			var str = cfg.html;
+		}
 
 		// Style
 		if(cfg.style){
@@ -30,6 +38,7 @@
 		var elements = this.elements;
 		elements[id] = {
 			dom: dom,
+			template:str,
 			calls:{},
 			call:  function(name, data, result){
 				if(data !== null){
