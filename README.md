@@ -26,6 +26,41 @@ JSFiddle: https://jsfiddle.net/sfkk4rrw/1/
 ### Block
 *A block is needed to cluster the elements*
 
+### Block Layout Types
+
+#1 Default
+```js
+var main = new H3.Block(function(){ // Creating the block
+
+	this.elem('h1', {text:'Just a element'}); // Defining the element
+
+});
+
+main.build(); // Building the block
+main.render(document.body); // Rendering the block
+```
+#2 Detached
+```js
+var main = new H3.Block();
+
+// Set the trunk function
+main.trunk = function(){
+	this.elem('h1', {text:'Just a element'}); // Defining the element
+}
+
+main.build(); // Building the block
+main.render(document.body); // Rendering the block
+```
+
+#2 Compact
+```js
+var main = new H3.Block(function(){
+
+	this.elem('h1', {text:'Just a element'}); // Defining the element
+	
+}).build().render(document.body); // Rendering the block
+```
+
 ##### Block Handlers
 ```js
 block.build();                     // Constructs all elements inside the block simultaneously
