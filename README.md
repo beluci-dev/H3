@@ -75,4 +75,4 @@ element.class()         // Used to get class or element.css('class') to rewrite 
 element.style('name')   // Used to get style or element.style('name', 'value') to change the style
 element.attr('name')    // Used to get an attribute or element.attr('name', 'value') to change the attribute
 ```
-
+**TIP:** *You can use element.dom to access the dom element, like ```element.dom.remove()``` or ```element.dom.setAttribute()```*
