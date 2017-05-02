@@ -23,6 +23,17 @@ JSFiddle: https://jsfiddle.net/sfkk4rrw/1/
 
 ## Documentation
 
+### Block
+*A block is needed to cluster the elements*
+
+##### Block Handlers
+```js
+block.build();                     // Constructs all elements simultaneously
+block.render(destiny, callback);   // Render a builded block inside a DOM element
+block.html();                      // Gets the DOM element from a builded block
+block.destroy();                   // Destroy a block and all inside elements
+```
+
 ### Element
 *Elements are placed only under a especific block*
 ```js
