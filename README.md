@@ -1,5 +1,5 @@
 # H3js a simple client side template engine.
-_V0.2a (2017-03-24)_<br>
+_V0.21a (2017-03-24)_<br>
 ### Hello World
 
 ```js
@@ -62,5 +62,6 @@ element.value();        // Used to get value or element.value('10') to set value
 element.data('name')    // Used to get data or element.data('name', 'value') to set data
 element.class()         // Used to get class or element.css('class') to rewrite the class
 element.style('name')   // Used to get style or element.style('name', 'value') to change the style
+element.attr('name')    // Used to get an attribute or element.attr('name', 'value') to change the attribute
 ```
 
