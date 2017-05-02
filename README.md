@@ -31,7 +31,7 @@ JSFiddle: https://jsfiddle.net/sfkk4rrw/1/
 block.build();                     // Constructs all elements inside the block simultaneously
 block.render(destiny, callback);   // Render a builded block inside a DOM element
 block.html();                      // Gets the DOM element from a builded block
-block.destroy();                   // Destroy a block and all inside elements
+block.destroy();                   // Destroy a block and all child elements
 ```
 
 ### Element
