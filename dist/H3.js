@@ -8,7 +8,7 @@
  *
  *      https://github.com/Heronbeluci/H3
  * 
- *      V0.2a (2017-03-22)
+ *      V0.21a (2017-03-22)
  *
  */
 (function(){
@@ -26,12 +26,19 @@
 		if(cfg.value)         dom.value        = cfg.value;
 		if(cfg.placeholder)   dom.placeholder  = cfg.placeholder;
 		if(cfg.title)         dom.title        = cfg.title;
-		if(cfg.data)          dom.dataset      = cfg.data;
+		if(cfg.for)           dom.htmlFor      = cfg.for;
 
 		// Content
 		if(cfg.text)          dom.innerText    = cfg.text;
 		if(cfg.html)          dom.innerHTML    = cfg.html;
 
+		// Data
+		if(cfg.data){
+			for(var i in cfg.data){
+				dom.dataset[i] = cfg.data[i];
+			}
+		}
+		
 		// Style
 		if(cfg.style){
 			for(var i in cfg.style){
@@ -76,6 +83,14 @@
 					return this;
 				}else{
 					return this.dom.className;
+				}
+			},
+			attr:  function(name, val){
+				if(val){
+					this.dom.setAttribute(name, val);
+					return this;
+				}else{
+					return this.dom.getAttribute(name);
 				}
 			},
 			data:  function(name, val){
@@ -128,5 +143,21 @@
 	H3.Block.prototype.html = function(){
 		if(this.dom === undefined) console.error('H3: Tried to get html from a unbuilded block.');
 		return this.dom;
+	}
+	H3.Block.prototype.destroy = function(){
+		if(this.dom === undefined){
+			console.error('H3: Tried to destroy a unbuilded block.');
+			return false;
+		}
+
+		this.dom.remove();
+
+		delete this.data;
+		delete this.trunk;
+		delete this.render;
+		delete this.elem;
+		delete this.dom;
+
+		return this;
 	}
 })();
