@@ -28,7 +28,7 @@ JSFiddle: https://jsfiddle.net/sfkk4rrw/1/
 
 ##### Block Handlers
 ```js
-block.build();                     // Constructs all elements simultaneously
+block.build();                     // Constructs all elements inside the block simultaneously
 block.render(destiny, callback);   // Render a builded block inside a DOM element
 block.html();                      // Gets the DOM element from a builded block
 block.destroy();                   // Destroy a block and all inside elements
