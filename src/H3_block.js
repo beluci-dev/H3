@@ -53,8 +53,27 @@
 		return this;
 	}
 	H3.Block.prototype.render = function(dest){
-		if(this.dom === undefined) console.error('H3: Tried to renderize a unbuilded block.');
+		if(this.dom === undefined){
+			console.error('H3: Tried to renderize a unbuilded block.');
+			return false;
+		}
 		dest.appendChild(this.dom);
+		return this;
+	}
+	H3.Block.prototype.destroy = function(){
+		if(this.dom === undefined){
+			console.error('H3: Tried to destroy a unbuilded block.');
+			return false;
+		}
+
+		this.dom.remove();
+
+		delete this.data;
+		delete this.trunk;
+		delete this.render;
+		delete this.elem;
+		delete this.dom;
+
 		return this;
 	}
 	H3.Block.prototype.html = function(){
