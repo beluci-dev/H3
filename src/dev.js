@@ -8,12 +8,13 @@
  *
  *      https://github.com/Heronbeluci/H3
  * 
- *      V0.2a (2017-03-22)
+ *      V0.21a (2017-03-22)
  *
  */
 (function(){
 	H3 = {};
 
+	// H3 Element
 	H3.DOMelem = function(tag, cfg){
 		var dom = document.createElement(tag);
 
@@ -26,12 +27,19 @@
 		if(cfg.value)         dom.value        = cfg.value;
 		if(cfg.placeholder)   dom.placeholder  = cfg.placeholder;
 		if(cfg.title)         dom.title        = cfg.title;
-		if(cfg.data)          dom.dataset      = cfg.data;
+		if(cfg.for)           dom.htmlFor      = cfg.for;
 
 		// Content
-		if(cfg.text)          dom.innerText    = cfg.text;
-		if(cfg.html)          dom.innerHTML    = cfg.html;
+		if(cfg.text)          dom.innerText    = H3.DataParser(this.data, dom, cfg.text);
+		if(cfg.html)          dom.innerHTML    = H3.DataParser(this.data, dom, cfg.html, true);
 
+		// Data
+		if(cfg.data){
+			for(var i in cfg.data){
+				dom.dataset[i] = cfg.data[i];
+			}
+		}
+		
 		// Style
 		if(cfg.style){
 			for(var i in cfg.style){
@@ -42,6 +50,9 @@
 		var id = this.elements.length+1;
 		var elements = this.elements;
 		elements[id] = {
+			text:cfg.text,
+			html:cfg.html,
+
 			dom: dom,
 			calls:{},
 			call:  function(name, data, result){
@@ -78,6 +89,14 @@
 					return this.dom.className;
 				}
 			},
+			attr:  function(name, val){
+				if(val){
+					this.dom.setAttribute(name, val);
+					return this;
+				}else{
+					return this.dom.getAttribute(name);
+				}
+			},
 			data:  function(name, val){
 				if(val){
 					this.dom.dataset[name] = val;
@@ -106,6 +125,7 @@
 		return elements[id];
 	}
 
+	// H3 Block
 	H3.Block = function(trunk){
 		this.id = new Date().getTime()+Math.random();
 		this.trunk = trunk;
@@ -113,20 +133,81 @@
 		//blocks[this.id] = this;
 		return this;
 	}
-	H3.Block.prototype.build = function(){
+	H3.Block.prototype.build   = function(data){
 		this.dom    = document.createElement('h3-block');
+		this.data = data;
 		this.dom.id = this.id;
 		this.elem   = H3.DOMelem;
 		this.trunk(this);
 		return this;
 	}
-	H3.Block.prototype.render = function(dest){
-		if(this.dom === undefined) console.error('H3: Tried to renderize a unbuilded block.');
+	H3.Block.prototype.render  = function(dest){
+		if(this.dom === undefined) throw('H3: Tried to renderize a unbuilded block.');
 		dest.appendChild(this.dom);
 		return this;
 	}
-	H3.Block.prototype.html = function(){
-		if(this.dom === undefined) console.error('H3: Tried to get html from a unbuilded block.');
+	H3.Block.prototype.html    = function(){
+		if(this.dom === undefined) throw('H3: Tried to get html from a unbuilded block.');
 		return this.dom;
 	}
+	H3.Block.prototype.destroy = function(){
+		if(this.dom !== undefined){
+			this.dom.remove();
+		}		
+
+		delete this.data;
+		delete this.trunk;
+		delete this.render;
+		delete this.elem;
+		delete this.dom;
+
+		return this;
+	}
+
+	// H3 LiveObjects
+	H3.Block.prototype.refresh = function(){
+		for(var key in this.elements){
+			var dom = this.elements[key].dom;
+
+			if(dom.H3dt === 'html'){
+				var res = H3.DataParser(this.data, dom, dom.H3tp, true);
+				if(dom.innerHTML !== res){
+					dom.innerHTML = res;
+				}
+			}
+			if(dom.H3dt === 'text'){
+				var res = H3.DataParser(this.data, dom, dom.H3tp);
+				if(dom.innerText !== res){
+					dom.innerText = res;
+				}
+			}
+		}
+	}
+	H3.DataParser = function(data, dom, str, html){
+		if(!data || str==undefined) return str;
+
+		// Making a shallow copy and replacing the {{ }} with the data
+		return str.substr(0).replace(/{{(.*?)}}/g, function(match, key){
+
+			if(match){
+				if(html){
+					dom.H3dt = 'html';
+				}else{
+					dom.H3dt = 'text';
+				}
+				dom.H3tp = str;
+			}
+
+			if(data[key]){
+				return data[key];
+			}else{
+				var map = key.split(".");
+
+
+
+			}
+
+		});
+	}
+
 })();

@@ -9,48 +9,52 @@
   <link rel="stylesheet" media="screen" href="../demo/css/style.css"/>
   <link rel="shortcut icon" href="about:blank">
 
+  <style type="text/css">
+    h1{
+      text-align: center;
+      background-color: rgb(238,238,238);
+      border: 1px solid rgb(180,180,180);
+      color: rgb(88,88,88);
+      padding: 20px;
+      font-family: Verdana;
+      font-size: 22px;
+    }
+  </style>
+
 </head>
 <body>
-
-  <script src="H3_element.js"></script>
-  <script src="H3_block.js"></script>
-  <script src="H3_liveobjects.js"></script>
+  <script src="dev.js"></script>
 
   <script type="text/javascript">
 
-    var eventsList = new H3.Block(function(){
+    var dev = new H3.Block(function(){
 
-      var main = this.elem('div', {class:'main events'});
+      this.elem('h1', {text:'DEVELOPMENT TESTER'});
 
-      var btnClick = this.elem('button', {dest:main, text:'Click', class:'btn btn-xs btn-primary', data:{status:'primary'}});
-      btnClick.event('click', function(){
-        if(this.data('status') == 'primary'){
-          this.class('btn btn-xs btn-success');
-          this.data('status', 'success');
-        }else{
-          this.class('btn btn-xs btn-primary');
-          this.data('status', 'primary');
-        }
-      });
+      this.elem('div', {html:'HTML .0: <b>{{value.0}}</b> HTML .1: <b>{{value.1}}</b>'});
+      this.elem('div', {text:'TEXT 2: <b>{{value1}}</b> TEXT 2: <b>{{value2}}</b>'});
 
-      var btnOver = this.elem('button', {dest:main, text:'Over', class:'btn btn-xs btn-primary', data:{status:'primary'}});
-      btnOver.event('mouseover', function(){
-        if(this.data('status') == 'primary'){
-          this.class('btn btn-xs btn-success');
-          this.data('status', 'success');
-        }else{
-          this.class('btn btn-xs btn-primary');
-          this.data('status', 'primary');
-        }
-      });
-
-
-      this.elem('p', {dest:main, class:'soon', text:'more events soon...'});
-
+      //test.destroy();
     });
 
-    eventsList.build().render(document.body);
-    //eventsList.destroy();
+    var data = {
+      value: {
+        "0":'hi',
+        "1":'bye'
+      },
+      value2: 'data'
+    };
+
+    dev.build(data);
+    dev.render(document.body);
+
+    setInterval(function(){
+      data.value1 = Math.random()+1;
+      data.value2 = Math.random()+2;
+      dev.refresh();
+    }, 1000);
+
+    //dev.destroy();
   </script>
 </body>
 </html>
