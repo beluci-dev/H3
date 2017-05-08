@@ -31,27 +31,55 @@
 
       this.elem('h1', {text:'DEVELOPMENT TESTER'});
 
-      this.elem('div', {html:'HTML .0: <b>{{value.0}}</b> HTML .1: <b>{{value.1}}</b>'});
-      this.elem('div', {text:'TEXT 2: <b>{{value1}}</b> TEXT 2: <b>{{value2}}</b>'});
+      // Simple Templating
+      this.elem('h3', {text:'Simple Templating'});
+      this.elem('div', {html:'HTML: <b>{{simpleHtml}}</b>'});
+      this.elem('div', {text:'TEXT: {{simpleText}}'});
 
-      //test.destroy();
+      // Tree Templating
+      this.elem('h3', {text:'Tree Templating'});
+      this.elem('div', {html:'HTML: <b>{{tree.html.value}}</b>'});
+      this.elem('div', {text:'TEXT: {{tree.text.value}}'});
+
+      // Dynamic Templating
+      this.elem('h3', {text:'Dynamic Templating'});
+      this.elem('div', {html:'HTML: <b>{{dynamic.first}}</b>'});
+      this.elem('div', {text:'TEXT: {{dynamic.second}}'});
     });
 
     var data = {
-      value: {
-        "0":'hi',
-        "1":'bye'
+
+      // Simple Templating
+      simpleHtml:'This is a simple templated HTML!',
+      simpleText:'This is a simple templated TEXT!',
+
+      // Tree Templating
+      tree:{
+        html:{
+          value:'This is a templated HTML in a object tree!'
+        },
+        text:{
+          value:'This is a templated TEXT in a object tree!'
+        }
       },
-      value2: 'data'
+
+      // Tree Templating
+      dynamic:{
+        first:'Initializing...',
+        second:'Initializing...'
+      }
+      
     };
 
     dev.build(data);
     dev.render(document.body);
 
     setInterval(function(){
-      data.value1 = Math.random()+1;
-      data.value2 = Math.random()+2;
-      dev.refresh();
+      data.dynamic.first  = new Date();
+      data.dynamic.second = new Date();
+
+      dev.refresh(); // Compare the two data (Virtual and DOM) and display the most updated
+
     }, 1000);
 
     //dev.destroy();

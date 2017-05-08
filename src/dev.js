@@ -202,9 +202,27 @@
 				return data[key];
 			}else{
 				var map = key.split(".");
-
-
-
+				var value;
+				for(var m in map){
+					var i = map[m];
+					if(m == 0){
+						if(data[i] === undefined){
+							value = undefined;
+							console.warn('H3: Invalid live object: '+match);
+						}else{
+							value = data[i];
+						}						
+					}else{
+						i = map[m];
+						if(value === undefined){
+							value = undefined;
+							console.warn('H3: Invalid live object: '+match);
+						}else{
+							value = value[i];
+						}
+					}					
+				}
+				return value;
 			}
 
 		});
