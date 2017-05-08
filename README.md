@@ -82,8 +82,8 @@ var data = ['Heisenberg'];     // Or you can do this too (You will call in the e
 
 After you need to set the data in your block
 ```js
-block.build(data); // You can use this
-block.data = data; // Or you can use this too
+block.build(data); // You can use this to set the data and build
+block.data = data; // Or you can use this to only set the data
 ```
 
 Now you can set the sysntax under the element (html or text)
