@@ -91,8 +91,8 @@ Now you can set the sysntax under the element (html or text)
 this.elem('div', {text:'Say my name!'});
 this.elem('div', {html:'Your name is <b>{{name}}</b>'});
 ```
-##### How to update/refresh the data in DOM?
-To refresh u need to call the handler below after edited the data
+##### How to update/refresh the data
+To refresh the data you need to call the handler below (after edited the data)
 ```js
 block.refresh();
 ```
