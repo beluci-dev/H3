@@ -1,6 +1,6 @@
 # H3js a simple client side template engine.
-_V0.21a (2017-05-02)_<br>
-### Hello World
+_V0.3a (2017-05-08)_<br>
+### Preview
 
 ```js
 var HelloWorld = new H3.Block(function(){ // Creating the block
@@ -16,7 +16,8 @@ HelloWorld.render(document.body); // Rendering the block
 
 Hello World: https://heronbeluci.github.io/H3/demo/hello_world.html<br>
 Client Table: https://heronbeluci.github.io/H3/demo/client_table.html<br>
-Event List: https://heronbeluci.github.io/H3/demo/event_list.html
+Event List: https://heronbeluci.github.io/H3/demo/event_list.html<br>
+LiveObjects: https://heronbeluci.github.io/H3/demo/live_objects.html
 
 ### Benchmark
 JSFiddle: https://jsfiddle.net/sfkk4rrw/1/
@@ -24,9 +25,9 @@ JSFiddle: https://jsfiddle.net/sfkk4rrw/1/
 ## Documentation
 
 ### Block
-*A block is needed to cluster the elements*
+*A block is needed to cluster the elements.*
 
-### Block Layout Types
+##### Block Layout Types
 
 #1 Default
 ```js
@@ -63,12 +64,33 @@ var main = new H3.Block(function(){
 
 ##### Block Handlers
 ```js
-block.build();                     // Constructs all elements inside the block simultaneously
+block.build(data);                 // Constructs all elements inside the block simultaneously
 block.render(destiny, callback);   // Render a builded block inside a DOM element
 block.html();                      // Gets the DOM element from a builded block
 block.destroy();                   // Destroy a block and all child elements
+block.refresh();                   // Compare the two data (Virtual and DOM) and display the most updated
+```
+### LiveObjects
+*LiveObjects can be used in html or text elements, are used to replace syntaxes with values all in real time, with refreshes.*
+
+##### How to use
+First you need to build a data object or array
+```js
+var data = {name:'Heisenberg'} // You can do this (You will call in the element {{name}})
+var data = ['Heisenberg'];     // Or you can do this too (You will call in the element {{0}})
 ```
 
+After you need to set the data in your block
+```js
+block.build(data); // You can use this
+block.data = data; // Or you can use this too
+```
+
+Now you can set the sysntax under the element (html or text)
+```js
+this.elem('div', {text:'Say my name!'});
+this.elem('div', {html:'Your name is <b>{{name}}</b>'});
+```
 ### Element
 *Elements are placed only under a especific block*
 ```js
@@ -88,8 +110,8 @@ H3 Custom Attributes
 ```js
 {
 	dest:'',   // Destiny to display a element (if null the element have the block with destiny)
-	text:'',   // Text to display under a element
-	html:'',   // HTML to display under a element (like text but can render html syntaxes)
+	text:'',   // [LiveObjects Works Here] Text to display under a element
+	html:'',   // [LiveObjects Works Here] HTML to display under a element (like text but can render html syntaxes)
 	data:{},   // Object to save data in the DOM element
 	style:{}   // Custom style for each element
 }
