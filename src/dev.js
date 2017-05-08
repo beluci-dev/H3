@@ -8,7 +8,7 @@
  *
  *      https://github.com/Heronbeluci/H3
  * 
- *      V0.21a (2017-03-22)
+ *      V0.3a (2017-05-08)
  *
  */
 (function(){
@@ -187,9 +187,9 @@
 		if(!data || str==undefined) return str;
 
 		// Making a shallow copy and replacing the {{ }} with the data
-		return str.substr(0).replace(/{{(.*?)}}/g, function(match, key){
+		return str.substr(0).replace(/{{(.*?)}}/g, function(syntax, key){
 
-			if(match){
+			if(syntax){
 				if(html){
 					dom.H3dt = 'html';
 				}else{
@@ -208,7 +208,7 @@
 					if(m == 0){
 						if(data[i] === undefined){
 							value = undefined;
-							console.warn('H3: Invalid live object: '+match);
+							console.warn('H3: Invalid live object: '+syntax);
 						}else{
 							value = data[i];
 						}						
@@ -216,7 +216,7 @@
 						i = map[m];
 						if(value === undefined){
 							value = undefined;
-							console.warn('H3: Invalid live object: '+match);
+							console.warn('H3: Invalid live object: '+syntax);
 						}else{
 							value = value[i];
 						}
