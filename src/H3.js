@@ -135,7 +135,7 @@
 	}
 	H3.Block.prototype.build   = function(data){
 		this.dom    = document.createElement('h3-block');
-		this.data = data;
+		this.data   = data;
 		this.dom.id = this.id;
 		this.elem   = H3.DOMelem;
 		this.trunk(this);
@@ -165,6 +165,12 @@
 	}
 
 	// H3 LiveObjects
+	H3.Block.prototype.data = function(data){
+		if(data !== undefined){
+			this.data = data;
+		}
+		return this.data;
+	}
 	H3.Block.prototype.refresh = function(){
 		for(var key in this.elements){
 			var dom = this.elements[key].dom;

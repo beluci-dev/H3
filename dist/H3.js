@@ -8,12 +8,13 @@
  *
  *      https://github.com/Heronbeluci/H3
  * 
- *      V0.21a (2017-03-22)
+ *      V0.3a (2017-05-08)
  *
  */
 (function(){
 	H3 = {};
 
+	// H3 Element
 	H3.DOMelem = function(tag, cfg){
 		var dom = document.createElement(tag);
 
@@ -29,8 +30,8 @@
 		if(cfg.for)           dom.htmlFor      = cfg.for;
 
 		// Content
-		if(cfg.text)          dom.innerText    = cfg.text;
-		if(cfg.html)          dom.innerHTML    = cfg.html;
+		if(cfg.text)          dom.innerText    = H3.DataParser(this.data, dom, cfg.text);
+		if(cfg.html)          dom.innerHTML    = H3.DataParser(this.data, dom, cfg.html, true);
 
 		// Data
 		if(cfg.data){
@@ -49,6 +50,9 @@
 		var id = this.elements.length+1;
 		var elements = this.elements;
 		elements[id] = {
+			text:cfg.text,
+			html:cfg.html,
+
 			dom: dom,
 			calls:{},
 			call:  function(name, data, result){
@@ -121,6 +125,7 @@
 		return elements[id];
 	}
 
+	// H3 Block
 	H3.Block = function(trunk){
 		this.id = new Date().getTime()+Math.random();
 		this.trunk = trunk;
@@ -128,29 +133,27 @@
 		//blocks[this.id] = this;
 		return this;
 	}
-	H3.Block.prototype.build = function(){
+	H3.Block.prototype.build   = function(data){
 		this.dom    = document.createElement('h3-block');
+		this.data   = data;
 		this.dom.id = this.id;
 		this.elem   = H3.DOMelem;
 		this.trunk(this);
 		return this;
 	}
-	H3.Block.prototype.render = function(dest){
-		if(this.dom === undefined) console.error('H3: Tried to renderize a unbuilded block.');
+	H3.Block.prototype.render  = function(dest){
+		if(this.dom === undefined) throw('H3: Tried to renderize a unbuilded block.');
 		dest.appendChild(this.dom);
 		return this;
 	}
-	H3.Block.prototype.html = function(){
-		if(this.dom === undefined) console.error('H3: Tried to get html from a unbuilded block.');
+	H3.Block.prototype.html    = function(){
+		if(this.dom === undefined) throw('H3: Tried to get html from a unbuilded block.');
 		return this.dom;
 	}
 	H3.Block.prototype.destroy = function(){
-		if(this.dom === undefined){
-			console.error('H3: Tried to destroy a unbuilded block.');
-			return false;
-		}
-
-		this.dom.remove();
+		if(this.dom !== undefined){
+			this.dom.remove();
+		}		
 
 		delete this.data;
 		delete this.trunk;
@@ -160,4 +163,75 @@
 
 		return this;
 	}
+
+	// H3 LiveObjects
+	H3.Block.prototype.data = function(data){
+		if(data !== undefined){
+			this.data = data;
+		}
+		return this.data;
+	}
+	H3.Block.prototype.refresh = function(){
+		for(var key in this.elements){
+			var dom = this.elements[key].dom;
+
+			if(dom.H3dt === 'html'){
+				var res = H3.DataParser(this.data, dom, dom.H3tp, true);
+				if(dom.innerHTML !== res){
+					dom.innerHTML = res;
+				}
+			}
+			if(dom.H3dt === 'text'){
+				var res = H3.DataParser(this.data, dom, dom.H3tp);
+				if(dom.innerText !== res){
+					dom.innerText = res;
+				}
+			}
+		}
+	}
+	H3.DataParser = function(data, dom, str, html){
+		if(!data || str==undefined) return str;
+
+		// Making a shallow copy and replacing the {{ }} with the data
+		return str.substr(0).replace(/{{(.*?)}}/g, function(syntax, key){
+
+			if(syntax){
+				if(html){
+					dom.H3dt = 'html';
+				}else{
+					dom.H3dt = 'text';
+				}
+				dom.H3tp = str;
+			}
+
+			if(data[key]){
+				return data[key];
+			}else{
+				var map = key.split(".");
+				var value;
+				for(var m in map){
+					var i = map[m];
+					if(m == 0){
+						if(data[i] === undefined){
+							value = undefined;
+							console.warn('H3: Invalid live object: '+syntax);
+						}else{
+							value = data[i];
+						}						
+					}else{
+						i = map[m];
+						if(value === undefined){
+							value = undefined;
+							console.warn('H3: Invalid live object: '+syntax);
+						}else{
+							value = value[i];
+						}
+					}					
+				}
+				return value;
+			}
+
+		});
+	}
+
 })();

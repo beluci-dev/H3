@@ -11,7 +11,7 @@
 	margin-top:40px;
 	background-color: rgb(244,244,244);
 	height: 300px;
-	border: 1px solid rgb(230,230,230)
+	border: 1px solid rgb(230,230,230);
 }
 .main h3{
 	text-align: center;
@@ -82,3 +82,30 @@
 	font-family: verdana;
 	color:rgb(80,80,80);
 }
+h1{
+        text-align: center;
+        background-color: rgb(238,238,238);
+        border-bottom: 1px solid rgb(180,180,180);
+        color: rgb(88,88,88);
+        padding: 15px;
+        font-family: Verdana;
+        font-size: 24px;
+        display: inline-block;
+        width: 100%;
+        margin-top: 0px;
+    }
+    h1 a{
+        display: inline-block;
+        margin-top:10px;
+        font-size: 12px;
+        width: 100%;
+    }
+    h3-block div{
+        margin-left: 22px;
+    }
+    h3-block h3{
+        margin-left: 10px;
+    }
+    h3-block div.list-group{
+    	margin-left: 0px;
+    }

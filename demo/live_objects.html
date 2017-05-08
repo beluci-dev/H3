@@ -5,45 +5,18 @@
   <title>H3</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
-  <link rel="stylesheet" media="screen" href="../demo/css/bootstrap.css"/>
-  <link rel="stylesheet" media="screen" href="../demo/css/style.css"/>
+  <link rel="stylesheet" media="screen" href="css/bootstrap.css"/>
+  <link rel="stylesheet" media="screen" href="css/style.css"/>
   <link rel="shortcut icon" href="about:blank">
-  <style type="text/css">
-    h1{
-        text-align: center;
-        background-color: rgb(238,238,238);
-        border-bottom: 1px solid rgb(180,180,180);
-        color: rgb(88,88,88);
-        padding: 15px;
-        font-family: Verdana;
-        font-size: 24px;
-        display: inline-block;
-        width: 100%;
-        margin-top: 0px;
-    }
-    h1 a{
-        display: inline-block;
-        margin-top:10px;
-        font-size: 12px;
-        width: 100%;
-    }
-    h3-block div{
-        margin-left: 22px;
-    }
-    h3-block h3{
-        margin-left: 10px;
-    }
-  </style>
-
 </head>
 <body>
-  <script src="H3.js"></script>
+  <script src="../dist/H3.js"></script>
   <script type="text/javascript" id="code-content">
 
     var block = new H3.Block(function(){
 
       var title = this.elem('h1', {text:'LiveObjects'});
-        this.elem('a', {dest:title, href:'#', text:'Source Code'});
+        this.elem('a', {dest:title, href:'https://github.com/Heronbeluci/H3/blob/master/demo/live_objects.html', text:'Source Code'});
 
       // Simple Templating
       this.elem('h3', {text:'Simple Templating'});
